@@ -3,7 +3,7 @@ import { currencyFetching, currencyFetchingError, currencyFetchingSuccess } from
 export const fetchThunkCurrency = () => {
   return function (dispatch) {
     dispatch(currencyFetching());
-    fetch('https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5')
+    fetch('https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json')
       .then((response) => response.json())
       .then((json) => dispatch(currencyFetchingSuccess(json)))
       .catch((e) => dispatch(currencyFetchingError(e.message)));

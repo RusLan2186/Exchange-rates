@@ -1,21 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const innitialState = {
-  currency: [],
+const initialState = {
+  currencyList: [],
   error: '',
   isLoading: false,
 };
 
 export const currencySlice = createSlice({
   name: 'currency',
-  innitialState,
+  initialState,
   reducers: {
     currencyFetching: (state) => {
       state.isLoading = true;
     },
     currencyFetchingSuccess: (state, action) => {
+      state.currencyList = action.payload;
       state.isLoading = false;
-      state.currency = action.payload;
       state.error = '';
     },
     currencyFetchingError: (state, action) => {
