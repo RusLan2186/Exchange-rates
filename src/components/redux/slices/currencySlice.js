@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const innitialState = {
   currency: [],
   error: '',
-  isLoading: fakse,
+  isLoading: false,
 };
 
 export const currencySlice = createSlice({
