@@ -1,13 +1,12 @@
 import './App.css';
-import Info from './components/Info';
+import Info from './components/Info/Info';
 
 function App() {
-  return(
+  return (
     <div>
-      <Info/>
-      <button>fddfdffd</button>
+      <Info />
     </div>
-  )
+  );
 }
 
 export default App;
