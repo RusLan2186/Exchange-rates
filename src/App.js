@@ -1,4 +1,4 @@
-import './App.css';
+import './scss/App.scss';
 import Info from './components/Info/Info';
 import Container from '@mui/material/Container';
 

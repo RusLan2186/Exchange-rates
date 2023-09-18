@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../loader/Loader';
 import OtherCurrency from './OtherCurrency';
+import cl from './Info.module.scss';
 
 import { fetchThunkCurrency } from '../redux/slices/correncyLoad';
 
@@ -15,7 +16,7 @@ const Info = () => {
   }, []);
 
   return (
-    <div>
+    <div className={cl.container}>
       {error && <h1> `You have an error ${error}` </h1>}
       {isLoading && (
         <div>
