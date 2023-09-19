@@ -19,6 +19,7 @@ const Info = () => {
   return (
     <div>
       <h1>hello</h1>
+      <h1>hello</h1>
       {data}
       <div className={cl.container}>
         {error && <h1> `You have an error ${error}` </h1>}
