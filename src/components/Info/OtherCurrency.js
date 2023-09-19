@@ -4,7 +4,7 @@ const OtherCurrency = ({ currencyList }) => {
   const [searchValue, setSearchValue] = useState('');
 
   const searchResult = currencyList.filter((item) =>
-    item.txt.toLowerCase().includes(searchValue.toLowerCase()),
+    item.cc.toLowerCase().includes(searchValue.toLowerCase()),
   );
 
   return (
@@ -19,7 +19,7 @@ const OtherCurrency = ({ currencyList }) => {
       </div>
       {searchResult.map((currency) => (
         <div key={currency.cc}>
-          {currency.txt} {currency.rate} {currency.exchangedate}
+          {currency.cc} {currency.rate}
         </div>
       ))}
     </div>
