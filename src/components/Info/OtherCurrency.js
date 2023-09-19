@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import cl from './OtherCurrency.module.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { currencySearch } from '../redux/slices/currencySlice';
 
 const OtherCurrency = ({ currencyList }) => {
   const [searchValue, setSearchValue] = useState('');

@@ -8,6 +8,7 @@ function App() {
       <Container>
         <Info />
       </Container>
+      <h1>hello</h1>
     </div>
   );
 }

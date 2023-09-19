@@ -25,6 +25,6 @@ export const currencySlice = createSlice({
   },
 });
 
-export const { currencyFetching, currencyFetchingError, currencyFetchingSuccess } =
+export const { currencyFetching, currencyFetchingError, currencyFetchingSuccess, currencySearch } =
   currencySlice.actions;
 export default currencySlice.reducer;
