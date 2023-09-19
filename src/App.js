@@ -7,8 +7,8 @@ import { useSelector } from 'react-redux';
 
 function App() {
   const currencyList = useSelector((store) => store.currency.currencyList);
-  const [fromCurrency, setFromCurrency] = useState(0);
-  const [toCurrency, setToCurrency] = useState(1);
+  const [fromCurrency, setFromCurrency] = useState('UA');
+  const [toCurrency, setToCurrency] = useState('USD');
   const [fromPrice, setFromPrice] = useState(0);
   const [toPrice, setToPrice] = useState(0);
 
@@ -16,16 +16,11 @@ function App() {
     let res;
 
     currencyList.filter((item) => {
-      if (item.cc === 'USD' && toCurrency === 1) {
+      if (item.cc === toCurrency) {
         res = value / item.rate;
       }
-      if (item.cc === 'EUR' && toCurrency === 2) {
-        res = value / item.rate;
-      }
-      if (item.cc === 'PLN' && toCurrency === 3) {
-        res = value / item.rate;
-      }
-      if (toCurrency === 0) {
+
+      if (toCurrency === 'UA') {
         res = value;
       }
 
