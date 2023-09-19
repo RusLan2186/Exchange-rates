@@ -15,14 +15,14 @@ const Info = () => {
   useEffect(() => {
     dispatch(fetchThunkCurrency());
   }, []);
-  console.log(currencyList);
+
   return (
     <div>
       <div className={cl.date}> {date}</div>
       <div className={cl.container}>
-        {error && <h1> `You have an error ${error}` </h1>}
+        {error && <h1 className={cl.error}> You have an error ${error} </h1>}
         {isLoading && (
-          <div>
+          <div className={cl.loader}>
             <Loader />
           </div>
         )}
@@ -37,7 +37,11 @@ const Info = () => {
               <span className={cl.rate}> {currency.rate}</span>
             </div>
           ))}
-        <button className={cl.button} onClick={() => setOtherCurrency(!otherCurrency)}>
+
+        <button
+          className={error || isLoading ? cl.button__disabled : cl.button}
+          onClick={() => setOtherCurrency(!otherCurrency)}
+        >
           Show other currency
         </button>
       </div>

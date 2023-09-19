@@ -42,3 +42,16 @@
       transition: 0.5s all ease 0s;
    }
 }
+.button__disabled {
+   display: none;
+}
+
+.error {
+   margin: 0 auto;
+   color: red;
+   font-weight: 700;
+   font-size: 35px;
+}
+.loader {
+   margin: 0 auto;
+}
