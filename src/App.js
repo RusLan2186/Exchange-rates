@@ -9,13 +9,33 @@ function App() {
   const currencyList = useSelector((store) => store.currency.currencyList);
   const [fromCurrency, setFromCurrency] = useState(0);
   const [toCurrency, setToCurrency] = useState(1);
+  const [fromPrice, setFromPrice] = useState(0);
+  const [toPrice, setToPrice] = useState(0);
+
+  const onChangeFromPrice = (value) => {
+    setFromPrice(value);
+  };
+  const onChangeToPrice = (value) => {
+    setToPrice(value);
+  };
+
   return (
     <div>
       <Container>
         <Info />
         <div className='convert'>
-          <Convert currency={fromCurrency} onChangeCurrency={setFromCurrency} />
-          <Convert currency={toCurrency} onChangeCurrency={setToCurrency} />
+          <Convert
+            value={fromPrice}
+            onChangeValue={onChangeFromPrice}
+            currency={fromCurrency}
+            onChangeCurrency={setFromCurrency}
+          />
+          <Convert
+            value={toPrice}
+            onChangeValue={onChangeToPrice}
+            currency={toCurrency}
+            onChangeCurrency={setToCurrency}
+          />
         </div>
       </Container>
     </div>

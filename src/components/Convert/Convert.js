@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import cl from './Convert.module.scss';
 
-const Convert = ({ currency, onChangeCurrency }) => {
+const Convert = ({ value, onChangeValue, currency, onChangeCurrency }) => {
   const defaultCorrency = ['ua', 'usd', 'eur', 'pln'];
   //   const currencyList = useSelector((store) => store.currency.currencyList);
-  //   const [fromCurrency, setFromCurrency] = useState('UA');
 
   return (
     <div className={cl.wrapper}>
@@ -20,7 +19,7 @@ const Convert = ({ currency, onChangeCurrency }) => {
           </li>
         ))}
       </ul>
-      {/* <input value={value} onChange={(e) => setValue(e.target.value)} type='number' /> */}
+      <input value={value} onChange={(e) => onChangeValue(e.target.value)} type='number' />
     </div>
   );
 };
