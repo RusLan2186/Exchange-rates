@@ -1,11 +1,20 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import cl from './Convert.module.scss';
 
 const Convert = () => {
-  const corrency = ['ua', 'usa', 'eur', [pln]];
+  const defaultCorrency = ['ua', 'usa', 'eur', 'pln'];
+  const currencyList = useSelector((store) => store.currency.currencyList);
+
   return (
-    <div>
-      <h1>Convert</h1>
-      <button>convert</button>
+    <div className={cl.wrapper}>
+      <h1 className={cl.title}>Convert</h1>
+      <ul className={cl.list}>
+        {defaultCorrency.map((item) => (
+          <li>{item}</li>
+        ))}
+      </ul>
+      {/* <input value={value} onChange={(e) => setValue(e.target.value)} type='number' /> */}
     </div>
   );
 };
