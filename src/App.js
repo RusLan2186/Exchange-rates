@@ -2,7 +2,7 @@ import './scss/App.scss';
 import Info from './components/Info/Info';
 import Container from '@mui/material/Container';
 import Convert from './components/Convert/Convert';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 function App() {
@@ -13,8 +13,31 @@ function App() {
   const [toPrice, setToPrice] = useState(0);
 
   const onChangeFromPrice = (value) => {
-    setFromPrice(value);
+    let res;
+
+    currencyList.filter((item) => {
+      if (item.cc === 'USD' && toCurrency === 1) {
+        res = value / item.rate;
+      }
+      if (item.cc === 'EUR' && toCurrency === 2) {
+        res = value / item.rate;
+      }
+      if (item.cc === 'PLN' && toCurrency === 3) {
+        res = value / item.rate;
+      }
+      if (toCurrency === 0) {
+        res = value;
+      }
+
+      setToPrice(res);
+      setFromPrice(value);
+    });
   };
+
+  useEffect(() => {
+    onChangeFromPrice(fromPrice);
+  }, [toCurrency]);
+
   const onChangeToPrice = (value) => {
     setToPrice(value);
   };

@@ -4,7 +4,7 @@ import cl from './Convert.module.scss';
 
 const Convert = ({ value, onChangeValue, currency, onChangeCurrency }) => {
   const defaultCorrency = ['ua', 'usd', 'eur', 'pln'];
-  //   const currencyList = useSelector((store) => store.currency.currencyList);
+  const currencyList = useSelector((store) => store.currency.currencyList);
 
   return (
     <div className={cl.wrapper}>
