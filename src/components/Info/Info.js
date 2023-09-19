@@ -12,14 +12,13 @@ const Info = () => {
   const [otherCurrency, setOtherCurrency] = useState(false);
   const data = Date();
 
-  console.log(data);
-
   useEffect(() => {
     dispatch(fetchThunkCurrency());
   }, []);
 
   return (
     <div>
+      <h1>hello</h1>
       {data}
       <div className={cl.container}>
         {error && <h1> `You have an error ${error}` </h1>}
