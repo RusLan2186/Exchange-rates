@@ -1,17 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import cl from './Convert.module.scss';
 
-const Convert = () => {
-  const defaultCorrency = ['ua', 'usa', 'eur', 'pln'];
-  const currencyList = useSelector((store) => store.currency.currencyList);
+const Convert = ({ currency, onChangeCurrency }) => {
+  const defaultCorrency = ['ua', 'usd', 'eur', 'pln'];
+  //   const currencyList = useSelector((store) => store.currency.currencyList);
+  //   const [fromCurrency, setFromCurrency] = useState('UA');
 
   return (
     <div className={cl.wrapper}>
-      <h1 className={cl.title}>Convert</h1>
       <ul className={cl.list}>
-        {defaultCorrency.map((item) => (
-          <li>{item}</li>
+        {defaultCorrency.map((cur, i) => (
+          <li
+            onClick={() => onChangeCurrency(i)}
+            className={currency === i ? cl.itemLi : cl.itemActive}
+            key={cur}
+          >
+            {cur}
+          </li>
         ))}
       </ul>
       {/* <input value={value} onChange={(e) => setValue(e.target.value)} type='number' /> */}
