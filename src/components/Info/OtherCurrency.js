@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import cl from './OtherCurrency.module.scss';
+import cl from './OtherCurrently.module.scss';
 
 const OtherCurrency = ({ currencyList }) => {
   const [searchValue, setSearchValue] = useState('');
