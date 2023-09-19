@@ -10,17 +10,15 @@ const Info = () => {
   const dispatch = useDispatch();
   const { currencyList, error, isLoading } = useSelector((store) => store.currency);
   const [otherCurrency, setOtherCurrency] = useState(false);
-  const data = Date();
+  const date = Date();
 
   useEffect(() => {
     dispatch(fetchThunkCurrency());
   }, []);
-
+  console.log(currencyList);
   return (
     <div>
-      <h1>hello</h1>
-      <h1>hello</h1>
-      {data}
+      <div className={cl.date}> {date}</div>
       <div className={cl.container}>
         {error && <h1> `You have an error ${error}` </h1>}
         {isLoading && (
@@ -28,16 +26,20 @@ const Info = () => {
             <Loader />
           </div>
         )}
-        <button onClick={() => setOtherCurrency(!otherCurrency)}>Show other currency</button>
+
         {currencyList
           .filter(
             (item) => item.txt === 'Долар США' || item.txt === 'Євро' || item.txt === 'Злотий',
           )
           .map((currency) => (
-            <div key={currency.cc}>
-              {currency.cc} {currency.rate}
+            <div className={cl.item} key={currency.cc}>
+              <span className={cl.cc}> {currency.cc}</span>
+              <span className={cl.rate}> {currency.rate}</span>
             </div>
           ))}
+        <button className={cl.button} onClick={() => setOtherCurrency(!otherCurrency)}>
+          Show other currency
+        </button>
       </div>
       {otherCurrency && <OtherCurrency currencyList={currencyList} />}
     </div>
