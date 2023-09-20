@@ -11,27 +11,59 @@ function App() {
   const [toCurrency, setToCurrency] = useState('USD');
   const [fromPrice, setFromPrice] = useState(0);
   const [toPrice, setToPrice] = useState(0);
+  const defaultCorrency = ['UA', 'USD', 'EUR', 'PLN'];
+  // console.log(currencyList);
 
-  console.log(currencyList);
+  const filterCurrencyList = currencyList
+    .filter((item) => {
+      return defaultCorrency.includes(item.cc);
+    })
+    .map((item) => {
+      // return { rate: item.rate, cc: item.cc };
+      return [item.cc, item.rate];
+    });
+  // console.log(result);
+
+  const rate = Object.fromEntries(filterCurrencyList);
+  // console.log(obj[fromCurrency]);
+
   const onChangeFromPrice = (value) => {
     let res;
 
-    currencyList.filter((item) => {
-      if (item.cc === toCurrency) {
-        res = (value / item.rate).toFixed(2);
-      }
-      if (item.cc === fromCurrency) {
-        const price = value * item.rate;
-      }
+    const price = value * rate[fromCurrency];
+    res = (price / rate[toCurrency]).toFixed(2);
+    if (fromCurrency === 'UA') {
+      res = (value / rate[toCurrency]).toFixed(2);
+    }
+    if (fromCurrency === 'UA' && toCurrency === 'UA') {
+      res = value;
+    }
+    // if (toCurrency === 'UA') {
+    //   res = value * rate[toCurrency];
+    // }
 
-      if (toCurrency === 'UA') {
-        res = value;
-      }
-
-      setToPrice(res);
-      setFromPrice(value);
-    });
+    setToPrice(res);
+    setFromPrice(value);
   };
+
+  // const onChangeFromPrice = (value) => {
+  //   let res;
+  //   currencyList.filter((item) => {
+  //     if (item.cc === toCurrency && fromCurrency === 'UA') {
+  //       res = (value / item.rate).toFixed(2);
+  //     }
+  //     if (item.cc === fromCurrency) {
+  //       res = (value * item.rate).toFixed(2);
+  //     }
+
+  //     if (toCurrency === 'UA' && fromCurrency === 'UA') {
+  //       res = value;
+  //     }
+
+  //     setToPrice(res);
+  //     setFromPrice(value);
+  //   });
+  // };
 
   useEffect(() => {
     onChangeFromPrice(fromPrice);
