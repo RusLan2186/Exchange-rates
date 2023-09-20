@@ -1,7 +1,7 @@
 import './scss/App.scss';
 import Info from './components/Info/Info';
 import Container from '@mui/material/Container';
-import Convert from './components/Convert/Convert';
+import Convertor from './components/Convertor/Convertor';
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
@@ -12,12 +12,16 @@ function App() {
   const [fromPrice, setFromPrice] = useState(0);
   const [toPrice, setToPrice] = useState(0);
 
+  console.log(currencyList);
   const onChangeFromPrice = (value) => {
     let res;
 
     currencyList.filter((item) => {
       if (item.cc === toCurrency) {
-        res = value / item.rate;
+        res = (value / item.rate).toFixed(2);
+      }
+      if (item.cc === fromCurrency) {
+        const price = value * item.rate;
       }
 
       if (toCurrency === 'UA') {
@@ -31,26 +35,42 @@ function App() {
 
   useEffect(() => {
     onChangeFromPrice(fromPrice);
-  }, [toCurrency]);
+  }, [toCurrency, fromCurrency]);
 
-  const onChangeToPrice = (value) => {
-    setToPrice(value);
-  };
+  // const onChangeToPrice = (value) => {
+  //   let res;
+  //   currencyList.filter((item) => {
+  //     if (item.cc === toCurrency || item.cc === fromCurrency) {
+  //       res = value * item.rate;
+  //     }
+
+  //     if (fromCurrency === 'USD') {
+  //       res = value;
+  //     }
+
+  //     setToPrice(value);
+  //     setFromPrice(res);
+  //   });
+  // };
+
+  // useEffect(() => {
+  //   onChangeToPrice(toPrice);
+  // }, [fromCurrency]);
 
   return (
-    <div>
+    <div className='wrapper'>
       <Container>
         <Info />
         <div className='convert'>
-          <Convert
+          <Convertor
             value={fromPrice}
             onChangeValue={onChangeFromPrice}
             currency={fromCurrency}
             onChangeCurrency={setFromCurrency}
           />
-          <Convert
+          <Convertor
             value={toPrice}
-            onChangeValue={onChangeToPrice}
+            // onChangeValue={onChangeToPrice}
             currency={toCurrency}
             onChangeCurrency={setToCurrency}
           />
