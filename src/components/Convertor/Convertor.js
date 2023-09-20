@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import cl from './Convertor.module.scss';
 
-const Convertor = ({ value, onChangeValue, currency, onChangeCurrency }) => {
-  const defaultCorrency = ['UA', 'USD', 'EUR', 'PLN'];
+const Convertor = ({ value, onChangeValue, currency, onChangeCurrency, defaultCorrency }) => {
+  // const defaultCorrency = ['UA', 'USD', 'EUR', 'PLN'];
   const currencyList = useSelector((store) => store.currency.currencyList);
 
   return (

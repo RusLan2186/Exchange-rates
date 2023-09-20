@@ -2,30 +2,28 @@ import './scss/App.scss';
 import Info from './components/Info/Info';
 import Container from '@mui/material/Container';
 import Convertor from './components/Convertor/Convertor';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 
 function App() {
   const currencyList = useSelector((store) => store.currency.currencyList);
   const [fromCurrency, setFromCurrency] = useState('UA');
   const [toCurrency, setToCurrency] = useState('USD');
-  const [fromPrice, setFromPrice] = useState(0);
+  const [fromPrice, setFromPrice] = useState(1);
   const [toPrice, setToPrice] = useState(0);
   const defaultCorrency = ['UA', 'USD', 'EUR', 'PLN'];
-  // console.log(currencyList);
+  // const ratesRef = useRef({});
 
   const filterCurrencyList = currencyList
     .filter((item) => {
       return defaultCorrency.includes(item.cc);
     })
     .map((item) => {
-      // return { rate: item.rate, cc: item.cc };
       return [item.cc, item.rate];
     });
-  // console.log(result);
 
+  // const rate = Object.fromEntries(filterCurrencyList);
   const rate = Object.fromEntries(filterCurrencyList);
-  // console.log(obj[fromCurrency]);
 
   const onChangeFromPrice = (value) => {
     let res;
@@ -36,58 +34,41 @@ function App() {
       res = (value / rate[toCurrency]).toFixed(2);
     }
     if (fromCurrency === 'UA' && toCurrency === 'UA') {
-      res = value;
+      value = res;
+      console.log('dvdvdvdvdvdv');
     }
-    // if (toCurrency === 'UA') {
-    //   res = value * rate[toCurrency];
-    // }
+    if (toCurrency === 'UA') {
+      res = (value * rate[fromCurrency]).toFixed(2);
+    }
 
     setToPrice(res);
     setFromPrice(value);
   };
 
-  // const onChangeFromPrice = (value) => {
-  //   let res;
-  //   currencyList.filter((item) => {
-  //     if (item.cc === toCurrency && fromCurrency === 'UA') {
-  //       res = (value / item.rate).toFixed(2);
-  //     }
-  //     if (item.cc === fromCurrency) {
-  //       res = (value * item.rate).toFixed(2);
-  //     }
-
-  //     if (toCurrency === 'UA' && fromCurrency === 'UA') {
-  //       res = value;
-  //     }
-
-  //     setToPrice(res);
-  //     setFromPrice(value);
-  //   });
-  // };
+  const onChangeToPrice = (value) => {
+    let result;
+    result = ((value * rate[toCurrency]) / rate[fromCurrency]).toFixed(2);
+    if (fromCurrency === 'UA') {
+      result = (value * rate[toCurrency]).toFixed(2);
+    }
+    if (toCurrency === 'UA') {
+      result = (value / rate[fromCurrency]).toFixed(2);
+    }
+    setFromPrice(result);
+    setToPrice(value);
+  };
 
   useEffect(() => {
     onChangeFromPrice(fromPrice);
-  }, [toCurrency, fromCurrency]);
+  }, [fromCurrency]);
 
-  // const onChangeToPrice = (value) => {
-  //   let res;
-  //   currencyList.filter((item) => {
-  //     if (item.cc === toCurrency || item.cc === fromCurrency) {
-  //       res = value * item.rate;
-  //     }
+  useEffect(() => {
+    onChangeToPrice(toPrice);
+  }, [toCurrency]);
 
-  //     if (fromCurrency === 'USD') {
-  //       res = value;
-  //     }
-
-  //     setToPrice(value);
-  //     setFromPrice(res);
-  //   });
-  // };
-
-  // useEffect(() => {
-  //   onChangeToPrice(toPrice);
-  // }, [fromCurrency]);
+  useEffect(() => {
+    onChangeToPrice(1);
+  }, []);
 
   return (
     <div className='wrapper'>
@@ -99,12 +80,14 @@ function App() {
             onChangeValue={onChangeFromPrice}
             currency={fromCurrency}
             onChangeCurrency={setFromCurrency}
+            defaultCorrency={defaultCorrency}
           />
           <Convertor
             value={toPrice}
-            // onChangeValue={onChangeToPrice}
+            onChangeValue={onChangeToPrice}
             currency={toCurrency}
             onChangeCurrency={setToCurrency}
+            defaultCorrency={defaultCorrency}
           />
         </div>
       </Container>
