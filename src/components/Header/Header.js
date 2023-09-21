@@ -17,7 +17,7 @@ const Header = () => {
               Home
             </NavLink>
 
-            <NavLink className={setActive} to='/Contacts'>
+            <NavLink className={setActive} to='/contacts'>
               Contacts
             </NavLink>
           </ul>
