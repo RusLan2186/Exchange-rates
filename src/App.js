@@ -12,7 +12,6 @@ function App() {
   const [fromPrice, setFromPrice] = useState(1);
   const [toPrice, setToPrice] = useState(0);
   const defaultCorrency = ['UA', 'USD', 'EUR', 'PLN'];
-  // const ratesRef = useRef({});
 
   const filterCurrencyList = currencyList
     .filter((item) => {
@@ -22,26 +21,25 @@ function App() {
       return [item.cc, item.rate];
     });
 
-  // const rate = Object.fromEntries(filterCurrencyList);
   const rate = Object.fromEntries(filterCurrencyList);
 
   const onChangeFromPrice = (value) => {
-    let res;
+    let result;
 
     const price = value * rate[fromCurrency];
-    res = (price / rate[toCurrency]).toFixed(2);
+    result = (price / rate[toCurrency]).toFixed(2);
     if (fromCurrency === 'UA') {
-      res = (value / rate[toCurrency]).toFixed(2);
-    }
-    if (fromCurrency === 'UA' && toCurrency === 'UA') {
-      value = res;
-      console.log('dvdvdvdvdvdv');
-    }
-    if (toCurrency === 'UA') {
-      res = (value * rate[fromCurrency]).toFixed(2);
+      result = (value / rate[toCurrency]).toFixed(2);
     }
 
-    setToPrice(res);
+    if (toCurrency === 'UA') {
+      result = (value * rate[fromCurrency]).toFixed(2);
+    }
+    if (fromCurrency === 'UA' && toCurrency === 'UA') {
+      result = value;
+    }
+
+    setToPrice(result);
     setFromPrice(value);
   };
 
@@ -54,17 +52,20 @@ function App() {
     if (toCurrency === 'UA') {
       result = (value / rate[fromCurrency]).toFixed(2);
     }
+    if (fromCurrency === 'UA' && toCurrency === 'UA') {
+      result = value;
+    }
     setFromPrice(result);
     setToPrice(value);
   };
 
   useEffect(() => {
     onChangeFromPrice(fromPrice);
-  }, [fromCurrency]);
+  }, [toCurrency]);
 
   useEffect(() => {
     onChangeToPrice(toPrice);
-  }, [toCurrency]);
+  }, [fromCurrency]);
 
   useEffect(() => {
     onChangeToPrice(1);
