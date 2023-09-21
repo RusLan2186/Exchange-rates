@@ -73,20 +73,24 @@ const Logics = () => {
   return (
     <div>
       <div className='convert'>
-        <Convertor
-          value={fromPrice}
-          onChangeValue={onChangeFromPrice}
-          currency={fromCurrency}
-          onChangeCurrency={setFromCurrency}
-          defaultCorrency={defaultCorrency}
-        />
-        <Convertor
-          value={toPrice}
-          onChangeValue={onChangeToPrice}
-          currency={toCurrency}
-          onChangeCurrency={setToCurrency}
-          defaultCorrency={defaultCorrency}
-        />
+        <div className='convert__wrapper'>
+          <Convertor
+            value={fromPrice}
+            onChangeValue={onChangeFromPrice}
+            currency={fromCurrency}
+            onChangeCurrency={setFromCurrency}
+            defaultCorrency={defaultCorrency}
+          />
+        </div>
+        <div className='convert__wrapper'>
+          <Convertor
+            value={toPrice}
+            onChangeValue={onChangeToPrice}
+            currency={toCurrency}
+            onChangeCurrency={setToCurrency}
+            defaultCorrency={defaultCorrency}
+          />
+        </div>
       </div>
     </div>
   );

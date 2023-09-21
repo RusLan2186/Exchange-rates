@@ -16,9 +16,7 @@ const Header = () => {
             <NavLink className={setActive} to='/home'>
               Home
             </NavLink>
-            <NavLink className={setActive} to='/Points'>
-              Points
-            </NavLink>
+
             <NavLink className={setActive} to='/Contacts'>
               Contacts
             </NavLink>

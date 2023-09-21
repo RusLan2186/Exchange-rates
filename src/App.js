@@ -11,7 +11,7 @@ function App() {
   return (
     <div className='wrapper'>
       <Header />
-      <Container>
+      <Container sx={{ padding: 0 }}>
         <Routes>
           <Route path='/home' element={<Main />}></Route>
         </Routes>
