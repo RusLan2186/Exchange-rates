@@ -43,3 +43,23 @@ body {
       }
    }
 }
+.footer {
+   position: fixed;
+   bottom: 0;
+   width: 100%;
+   background-color: rgb(33, 158, 33);
+   min-height: 80px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   color: white;
+   font-size: 20px;
+}
+.footer__text {
+   display: flex;
+   gap: 15px;
+   justify-content: center;
+   @media (max-width: 460px) {
+      flex-wrap: wrap;
+   }
+}
