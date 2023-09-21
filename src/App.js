@@ -12,14 +12,20 @@ import Footer from './components/Footer';
 function App() {
   return (
     <div className='wrapper'>
-      <Header />
-      <Container sx={{ padding: 0 }}>
-        <Routes>
-          <Route path='/home' element={<Main />}></Route>
-          <Route path='/contacts' element={<Contacts />}></Route>
-        </Routes>
-      </Container>
-      <Footer />
+      <header>
+        <Header />
+      </header>
+      <main className='main'>
+        <Container sx={{ padding: 0 }}>
+          <Routes>
+            <Route path='/home' element={<Main />}></Route>
+            <Route path='/contacts' element={<Contacts />}></Route>
+          </Routes>
+        </Container>
+      </main>
+      <footer>
+        <Footer />
+      </footer>
     </div>
   );
 }

@@ -1,11 +1,18 @@
 .wrapper {
+   margin-top: 80px;
    padding: 50px 0;
    text-align: center;
+   @media (max-width: 767.98px) {
+      margin-top: 60px;
+   }
 }
 .title {
    font-size: 40px;
    font-weight: 700;
    margin-bottom: 30px;
+   @media (max-width: 767.98px) {
+      font-size: 35px;
+   }
 }
 .links {
    margin-bottom: 30px;

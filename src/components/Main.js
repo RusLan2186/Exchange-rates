@@ -4,7 +4,7 @@ import Logics from './Convertor/Logics';
 
 const Main = () => {
   return (
-    <div>
+    <div style={{ minHeight: '100%' }}>
       <Info />
       <Logics />
     </div>
