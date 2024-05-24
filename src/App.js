@@ -1,13 +1,24 @@
 import './scss/App.scss';
+import Info from './components/Info/Info';
+import Container from '@mui/material/Container';
+
+import Logics from './components/Convertor/Logics';
+import { Route, Routes } from 'react-router-dom';
+import Header from './components/Header/Header';
+import Main from './components/Main';
+import Contacts from './components/Contacts/Contacts';
 
 function App() {
   return (
-    <>
-      <h1>hello</h1>
-      <h1>hello</h1>
-      <h1>hello</h1>
-      <h1>hello</h1>
-    </>
+    <div className='wrapper'>
+      <Header />
+      <Container sx={{ padding: 0 }}>
+        <Routes>
+          <Route path='/home' element={<Main />}></Route>
+          <Route path='/contacts' element={<Contacts />}></Route>
+        </Routes>
+      </Container>
+    </div>
   );
 }
 
