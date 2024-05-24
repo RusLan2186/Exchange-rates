@@ -14,7 +14,7 @@ function App() {
       <Header />
       <Container sx={{ padding: 0 }}>
         <Routes>
-          <Route path='/home' element={<Main />}></Route>
+          <Route path='/' element={<Main />}></Route>
           <Route path='/contacts' element={<Contacts />}></Route>
         </Routes>
       </Container>
